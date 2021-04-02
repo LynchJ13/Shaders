@@ -1,0 +1,417 @@
+.data_start
+
+    .export maxPlayersInWorld
+
+    __refl_const_intnl_udonTypeID: %SystemInt64, null
+    __refl_const_intnl_udonTypeName: %SystemString, null
+    maxPlayersInWorld: %SystemInt32, null
+    onPlayerJoinedPlayer: %VRCSDKBaseVRCPlayerApi, null
+    onPlayerLeftPlayer: %VRCSDKBaseVRCPlayerApi, null
+    players: %VRCSDKBaseVRCPlayerApiArray, null
+    __0_i_Int32: %SystemInt32, null
+    __1_i_Int32: %SystemInt32, null
+    __2_i_Int32: %SystemInt32, null
+    __0_mp_name_String: %SystemString, null
+    __0_mp_player_VRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __1_mp_player_VRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __0_const_intnl_SystemInt32: %SystemInt32, null
+    __1_const_intnl_SystemInt32: %SystemInt32, null
+    __0_const_intnl_SystemObject: %SystemObject, null
+    __0_const_intnl_SystemString: %SystemString, null
+    __1_const_intnl_SystemString: %SystemString, null
+    __2_const_intnl_SystemString: %SystemString, null
+    __3_const_intnl_SystemString: %SystemString, null
+    __0_const_intnl_SystemUInt32: %SystemUInt32, null
+    __0_const_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __0_intnl_SystemBoolean: %SystemBoolean, null
+    __1_intnl_SystemBoolean: %SystemBoolean, null
+    __10_intnl_SystemBoolean: %SystemBoolean, null
+    __11_intnl_SystemBoolean: %SystemBoolean, null
+    __2_intnl_SystemBoolean: %SystemBoolean, null
+    __3_intnl_SystemBoolean: %SystemBoolean, null
+    __4_intnl_SystemBoolean: %SystemBoolean, null
+    __5_intnl_SystemBoolean: %SystemBoolean, null
+    __6_intnl_SystemBoolean: %SystemBoolean, null
+    __7_intnl_SystemBoolean: %SystemBoolean, null
+    __8_intnl_SystemBoolean: %SystemBoolean, null
+    __9_intnl_SystemBoolean: %SystemBoolean, null
+    __0_intnl_SystemInt32: %SystemInt32, null
+    __1_intnl_SystemInt32: %SystemInt32, null
+    __2_intnl_SystemInt32: %SystemInt32, null
+    __3_intnl_SystemInt32: %SystemInt32, null
+    __4_intnl_SystemInt32: %SystemInt32, null
+    __5_intnl_SystemInt32: %SystemInt32, null
+    __0_intnl_SystemString: %SystemString, null
+    __1_intnl_SystemString: %SystemString, null
+    __2_intnl_SystemString: %SystemString, null
+    __3_intnl_SystemString: %SystemString, null
+    __4_intnl_SystemString: %SystemString, null
+    __5_intnl_SystemString: %SystemString, null
+    __6_intnl_SystemString: %SystemString, null
+    __7_intnl_SystemString: %SystemString, null
+    __8_intnl_SystemString: %SystemString, null
+    __9_intnl_SystemString: %SystemString, null
+    __0_intnl_returnTarget_UInt32: %SystemUInt32, null
+    __0_intnl_returnValSymbol_VRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __0_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __1_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __2_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __3_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __4_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __5_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __6_intnl_VRCSDKBaseVRCPlayerApi: %VRCSDKBaseVRCPlayerApi, null
+    __0_intnl_returnValSymbol_VRCPlayerApiArray: %VRCSDKBaseVRCPlayerApiArray, null
+
+.data_end
+
+        
+         #  using UdonSharp;
+        
+         #  using UnityEngine;
+        
+         #  using UnityEngine.UI;
+        
+         #  using VRC.SDKBase;
+        
+         #  using VRC.Udon;
+        
+         #  [AddComponentMenu("")]
+        
+         #  public class PlayerTracker : UdonSharpBehaviour
+.code_start
+        
+         #  public int maxPlayersInWorld;
+        
+         #  private VRCPlayerApi[] players;
+        
+         #  public void Start()
+    .export _start
+        
+    _start:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  {
+        
+         #  players = new VRCPlayerApi[maxPlayersInWorld];
+        PUSH, maxPlayersInWorld
+        PUSH, players
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__ctor__SystemInt32__VRCSDKBaseVRCPlayerApiArray"
+        
+         #  players[0] = Networking.LocalPlayer;
+        PUSH, __0_intnl_VRCSDKBaseVRCPlayerApi
+        EXTERN, "VRCSDKBaseNetworking.__get_LocalPlayer__VRCSDKBaseVRCPlayerApi"
+        PUSH, players
+        PUSH, __0_const_intnl_SystemInt32
+        PUSH, __0_intnl_VRCSDKBaseVRCPlayerApi
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__Set__SystemInt32_VRCSDKBaseVRCPlayerApi__SystemVoid"
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  public VRCPlayerApi GetPlayerByName(string name)
+    .export GetPlayerByName
+        
+    GetPlayerByName:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  {
+        
+         #  for (int i = 0; i < players.Length; i++)
+        PUSH, __0_const_intnl_SystemInt32
+        PUSH, __0_i_Int32
+        COPY
+        PUSH, players
+        PUSH, __0_intnl_SystemInt32
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__get_Length__SystemInt32"
+        PUSH, __0_i_Int32
+        PUSH, __0_intnl_SystemInt32
+        PUSH, __0_intnl_SystemBoolean
+        EXTERN, "SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean"
+        PUSH, __0_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x000002A0
+        
+         #  {
+        
+         #  if (players[i] != null && players[i].displayName == name)
+        PUSH, players
+        PUSH, __0_i_Int32
+        PUSH, __1_intnl_VRCSDKBaseVRCPlayerApi
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__Get__SystemInt32__VRCSDKBaseVRCPlayerApi"
+        PUSH, __1_intnl_VRCSDKBaseVRCPlayerApi
+        PUSH, __0_const_intnl_VRCSDKBaseVRCPlayerApi
+        PUSH, __2_intnl_SystemBoolean
+        EXTERN, "SystemObject.__op_Inequality__SystemObject_SystemObject__SystemBoolean"
+        PUSH, __2_intnl_SystemBoolean
+        PUSH, __1_intnl_SystemBoolean
+        COPY
+        PUSH, __1_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x000001B8
+        PUSH, players
+        PUSH, __0_i_Int32
+        PUSH, __2_intnl_VRCSDKBaseVRCPlayerApi
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__Get__SystemInt32__VRCSDKBaseVRCPlayerApi"
+        PUSH, __2_intnl_VRCSDKBaseVRCPlayerApi
+        PUSH, __0_intnl_SystemString
+        EXTERN, "VRCSDKBaseVRCPlayerApi.__get_displayName__SystemString"
+        PUSH, __0_intnl_SystemString
+        PUSH, __0_mp_name_String
+        PUSH, __3_intnl_SystemBoolean
+        EXTERN, "SystemString.__op_Equality__SystemString_SystemString__SystemBoolean"
+        PUSH, __1_intnl_SystemBoolean
+        PUSH, __3_intnl_SystemBoolean
+        PUSH, __4_intnl_SystemBoolean
+        EXTERN, "SystemBoolean.__op_ConditionalAnd__SystemBoolean_SystemBoolean__SystemBoolean"
+        PUSH, __4_intnl_SystemBoolean
+        PUSH, __1_intnl_SystemBoolean
+        COPY
+        PUSH, __1_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x00000264
+        
+         #  {
+        
+         #  Debug.Log("Getting player API for player " + players[i].displayName);
+        PUSH, players
+        PUSH, __0_i_Int32
+        PUSH, __3_intnl_VRCSDKBaseVRCPlayerApi
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__Get__SystemInt32__VRCSDKBaseVRCPlayerApi"
+        PUSH, __3_intnl_VRCSDKBaseVRCPlayerApi
+        PUSH, __1_intnl_SystemString
+        EXTERN, "VRCSDKBaseVRCPlayerApi.__get_displayName__SystemString"
+        PUSH, __1_const_intnl_SystemString
+        PUSH, __1_intnl_SystemString
+        PUSH, __2_intnl_SystemString
+        EXTERN, "SystemString.__op_Addition__SystemString_SystemString__SystemString"
+        PUSH, __2_intnl_SystemString
+        EXTERN, "UnityEngineDebug.__Log__SystemObject__SystemVoid"
+        
+         #  return players[i];
+        PUSH, players
+        PUSH, __0_i_Int32
+        PUSH, __0_intnl_returnValSymbol_VRCPlayerApi
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__Get__SystemInt32__VRCSDKBaseVRCPlayerApi"
+        PUSH, __0_intnl_returnTarget_UInt32 # Explicit return sequence
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        PUSH, __0_i_Int32
+        PUSH, __1_intnl_SystemInt32
+        COPY
+        PUSH, __0_i_Int32
+        PUSH, __1_const_intnl_SystemInt32
+        PUSH, __0_i_Int32
+        EXTERN, "SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32"
+        JUMP, 0x00000080
+        
+         #  return null;
+        PUSH, __0_const_intnl_SystemObject
+        PUSH, __0_intnl_returnValSymbol_VRCPlayerApi
+        COPY
+        PUSH, __0_intnl_returnTarget_UInt32 # Explicit return sequence
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  public VRCPlayerApi[] GetPlayers()
+    .export GetPlayers
+        
+    GetPlayers:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  {
+        
+         #  return players;
+        PUSH, players
+        PUSH, __0_intnl_returnValSymbol_VRCPlayerApiArray
+        COPY
+        PUSH, __0_intnl_returnTarget_UInt32 # Explicit return sequence
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  public override void OnPlayerJoined(VRCPlayerApi player)
+    .export _onPlayerJoined
+        
+    _onPlayerJoined:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        PUSH, onPlayerJoinedPlayer
+        PUSH, __0_mp_player_VRCPlayerApi
+        COPY
+        
+         #  {
+        
+         #  for (int i = 1; i < players.Length; i++)
+        PUSH, __1_const_intnl_SystemInt32
+        PUSH, __1_i_Int32
+        COPY
+        PUSH, players
+        PUSH, __2_intnl_SystemInt32
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__get_Length__SystemInt32"
+        PUSH, __1_i_Int32
+        PUSH, __2_intnl_SystemInt32
+        PUSH, __5_intnl_SystemBoolean
+        EXTERN, "SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean"
+        PUSH, __5_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x000004F8
+        
+         #  {
+        
+         #  if (players[i] == null)
+        PUSH, players
+        PUSH, __1_i_Int32
+        PUSH, __4_intnl_VRCSDKBaseVRCPlayerApi
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__Get__SystemInt32__VRCSDKBaseVRCPlayerApi"
+        PUSH, __4_intnl_VRCSDKBaseVRCPlayerApi
+        PUSH, __0_const_intnl_VRCSDKBaseVRCPlayerApi
+        PUSH, __6_intnl_SystemBoolean
+        EXTERN, "SystemObject.__op_Equality__SystemObject_SystemObject__SystemBoolean"
+        PUSH, __6_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x000004BC
+        
+         #  {
+        
+         #  Debug.Log("Storing player API for player " + player.displayName + " at index " + i);
+        PUSH, __0_mp_player_VRCPlayerApi
+        PUSH, __3_intnl_SystemString
+        EXTERN, "VRCSDKBaseVRCPlayerApi.__get_displayName__SystemString"
+        PUSH, __2_const_intnl_SystemString
+        PUSH, __3_intnl_SystemString
+        PUSH, __4_intnl_SystemString
+        EXTERN, "SystemString.__op_Addition__SystemString_SystemString__SystemString"
+        PUSH, __4_intnl_SystemString
+        PUSH, __3_const_intnl_SystemString
+        PUSH, __5_intnl_SystemString
+        EXTERN, "SystemString.__op_Addition__SystemString_SystemString__SystemString"
+        PUSH, __1_i_Int32
+        PUSH, __6_intnl_SystemString
+        EXTERN, "SystemInt32.__ToString__SystemString"
+        PUSH, __5_intnl_SystemString
+        PUSH, __6_intnl_SystemString
+        PUSH, __7_intnl_SystemString
+        EXTERN, "SystemString.__op_Addition__SystemString_SystemString__SystemString"
+        PUSH, __7_intnl_SystemString
+        EXTERN, "UnityEngineDebug.__Log__SystemObject__SystemVoid"
+        
+         #  players[i] = player;
+        PUSH, players
+        PUSH, __1_i_Int32
+        PUSH, __0_mp_player_VRCPlayerApi
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__Set__SystemInt32_VRCSDKBaseVRCPlayerApi__SystemVoid"
+        
+         #  return;
+        PUSH, __0_intnl_returnTarget_UInt32 # Explicit return sequence
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        PUSH, __1_i_Int32
+        PUSH, __3_intnl_SystemInt32
+        COPY
+        PUSH, __1_i_Int32
+        PUSH, __1_const_intnl_SystemInt32
+        PUSH, __1_i_Int32
+        EXTERN, "SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32"
+        JUMP, 0x00000350
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  public override void OnPlayerLeft(VRCPlayerApi player)
+    .export _onPlayerLeft
+        
+    _onPlayerLeft:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        PUSH, onPlayerLeftPlayer
+        PUSH, __1_mp_player_VRCPlayerApi
+        COPY
+        
+         #  {
+        
+         #  for (int i = 1; i < players.Length; i++)
+        PUSH, __1_const_intnl_SystemInt32
+        PUSH, __2_i_Int32
+        COPY
+        PUSH, players
+        PUSH, __4_intnl_SystemInt32
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__get_Length__SystemInt32"
+        PUSH, __2_i_Int32
+        PUSH, __4_intnl_SystemInt32
+        PUSH, __7_intnl_SystemBoolean
+        EXTERN, "SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean"
+        PUSH, __7_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x0000070C
+        
+         #  {
+        
+         #  if (players[i] != null && players[i].displayName == player.displayName)
+        PUSH, players
+        PUSH, __2_i_Int32
+        PUSH, __5_intnl_VRCSDKBaseVRCPlayerApi
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__Get__SystemInt32__VRCSDKBaseVRCPlayerApi"
+        PUSH, __5_intnl_VRCSDKBaseVRCPlayerApi
+        PUSH, __0_const_intnl_VRCSDKBaseVRCPlayerApi
+        PUSH, __9_intnl_SystemBoolean
+        EXTERN, "SystemObject.__op_Inequality__SystemObject_SystemObject__SystemBoolean"
+        PUSH, __9_intnl_SystemBoolean
+        PUSH, __8_intnl_SystemBoolean
+        COPY
+        PUSH, __8_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x0000068C
+        PUSH, players
+        PUSH, __2_i_Int32
+        PUSH, __6_intnl_VRCSDKBaseVRCPlayerApi
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__Get__SystemInt32__VRCSDKBaseVRCPlayerApi"
+        PUSH, __6_intnl_VRCSDKBaseVRCPlayerApi
+        PUSH, __8_intnl_SystemString
+        EXTERN, "VRCSDKBaseVRCPlayerApi.__get_displayName__SystemString"
+        PUSH, __1_mp_player_VRCPlayerApi
+        PUSH, __9_intnl_SystemString
+        EXTERN, "VRCSDKBaseVRCPlayerApi.__get_displayName__SystemString"
+        PUSH, __8_intnl_SystemString
+        PUSH, __9_intnl_SystemString
+        PUSH, __10_intnl_SystemBoolean
+        EXTERN, "SystemString.__op_Equality__SystemString_SystemString__SystemBoolean"
+        PUSH, __8_intnl_SystemBoolean
+        PUSH, __10_intnl_SystemBoolean
+        PUSH, __11_intnl_SystemBoolean
+        EXTERN, "SystemBoolean.__op_ConditionalAnd__SystemBoolean_SystemBoolean__SystemBoolean"
+        PUSH, __11_intnl_SystemBoolean
+        PUSH, __8_intnl_SystemBoolean
+        COPY
+        PUSH, __8_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x000006D0
+        
+         #  {
+        
+         #  players[i] = null;
+        PUSH, players
+        PUSH, __2_i_Int32
+        PUSH, __0_const_intnl_SystemObject
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__Set__SystemInt32_VRCSDKBaseVRCPlayerApi__SystemVoid"
+        
+         #  return;
+        PUSH, __0_intnl_returnTarget_UInt32 # Explicit return sequence
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        PUSH, __2_i_Int32
+        PUSH, __5_intnl_SystemInt32
+        COPY
+        PUSH, __2_i_Int32
+        PUSH, __1_const_intnl_SystemInt32
+        PUSH, __2_i_Int32
+        EXTERN, "SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32"
+        JUMP, 0x0000053C
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+.code_end

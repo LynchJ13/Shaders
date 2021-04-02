@@ -1,0 +1,100 @@
+.data_start
+
+    .export targetObject
+
+    __refl_const_intnl_udonTypeID: %SystemInt64, null
+    __refl_const_intnl_udonTypeName: %SystemString, null
+    targetObject: %UnityEngineGameObject, null
+    anim: %UnityEngineAnimator, null
+    onTriggerEnterOther: %UnityEngineCollider, null
+    onTriggerExitOther: %UnityEngineCollider, null
+    __0_mp_other_Collider: %UnityEngineCollider, null
+    __1_mp_other_Collider: %UnityEngineCollider, null
+    __0_const_intnl_SystemBoolean: %SystemBoolean, null
+    __1_const_intnl_SystemBoolean: %SystemBoolean, null
+    __0_const_intnl_SystemString: %SystemString, null
+    __0_const_intnl_SystemType: %SystemType, null
+    __0_const_intnl_SystemUInt32: %SystemUInt32, null
+    __0_intnl_UnityEngineTransform: %UnityEngineTransform, null
+    __0_intnl_returnTarget_UInt32: %SystemUInt32, null
+
+.data_end
+
+        
+         #  using UdonSharp;
+        
+         #  using UnityEngine;
+        
+         #  using VRC.SDKBase;
+        
+         #  using VRC.Udon;
+        
+         #  public class Object_Toggle_Collider : UdonSharpBehaviour
+.code_start
+        
+         #  public GameObject targetObject;
+        
+         #  private Animator anim;
+        
+         #  void Start()
+    .export _start
+        
+    _start:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  {
+        
+         #  anim = targetObject.GetComponent<Animator>();
+        PUSH, targetObject
+        PUSH, __0_intnl_UnityEngineTransform
+        EXTERN, "UnityEngineGameObject.__get_transform__UnityEngineTransform"
+        PUSH, __0_intnl_UnityEngineTransform
+        PUSH, __0_const_intnl_SystemType
+        PUSH, anim
+        EXTERN, "UnityEngineAnimator.__GetComponent__T"
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  private void OnTriggerEnter(Collider other) {
+    .export _onTriggerEnter
+        
+    _onTriggerEnter:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        PUSH, onTriggerEnterOther
+        PUSH, __0_mp_other_Collider
+        COPY
+        
+         #  anim.SetBool("isActive", true);
+        PUSH, anim
+        PUSH, __0_const_intnl_SystemString
+        PUSH, __0_const_intnl_SystemBoolean
+        EXTERN, "UnityEngineAnimator.__SetBool__SystemString_SystemBoolean__SystemVoid"
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  private void OnTriggerExit(Collider other) {
+    .export _onTriggerExit
+        
+    _onTriggerExit:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        PUSH, onTriggerExitOther
+        PUSH, __1_mp_other_Collider
+        COPY
+        
+         #  anim.SetBool("isActive", false);
+        PUSH, anim
+        PUSH, __0_const_intnl_SystemString
+        PUSH, __1_const_intnl_SystemBoolean
+        EXTERN, "UnityEngineAnimator.__SetBool__SystemString_SystemBoolean__SystemVoid"
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+.code_end

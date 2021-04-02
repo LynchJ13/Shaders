@@ -1,0 +1,103 @@
+.data_start
+
+    .export spawnItem
+    .export tracker
+
+    __refl_const_intnl_udonTypeID: %SystemInt64, null
+    __refl_const_intnl_udonTypeName: %SystemString, null
+    spawnItem: %UnityEngineGameObject, null
+    tracker: %VRCUdonUdonBehaviour, null
+    __0_i_Int32: %SystemInt32, null
+    __0_h_String: %SystemString, null
+    __0_const_intnl_SystemInt32: %SystemInt32, null
+    __1_const_intnl_SystemInt32: %SystemInt32, null
+    __0_const_intnl_SystemString: %SystemString, null
+    __1_const_intnl_SystemString: %SystemString, null
+    __2_const_intnl_SystemString: %SystemString, null
+    __0_const_intnl_SystemUInt32: %SystemUInt32, null
+    __0_intnl_SystemBoolean: %SystemBoolean, null
+    __0_intnl_SystemInt32: %SystemInt32, null
+    __1_intnl_SystemInt32: %SystemInt32, null
+    __0_intnl_SystemObject: %SystemObject, null
+    __0_intnl_returnTarget_UInt32: %SystemUInt32, null
+    __0_intnl_VRCSDKBaseVRCPlayerApiArray: %VRCSDKBaseVRCPlayerApiArray, null
+
+.data_end
+
+        
+         #  using UdonSharp;
+        
+         #  using UnityEngine;
+        
+         #  using VRC.SDKBase;
+        
+         #  using VRC.Udon;
+        
+         #  public class ShaderManager : UdonSharpBehaviour
+.code_start
+        
+         #  public GameObject spawnItem;
+        
+         #  public PlayerTracker tracker;
+        
+         #  void Start()
+    .export _start
+        
+    _start:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  {
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  void OnMouseDown() {
+    .export _onMouseDown
+        
+    _onMouseDown:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  string h = "hello";
+        PUSH, __0_const_intnl_SystemString
+        PUSH, __0_h_String
+        COPY
+        
+         #  for (int i = 0; i < tracker.GetPlayers().Length; i++){
+        PUSH, __0_const_intnl_SystemInt32
+        PUSH, __0_i_Int32
+        COPY
+        PUSH, tracker
+        PUSH, __1_const_intnl_SystemString
+        EXTERN, "VRCUdonCommonInterfacesIUdonEventReceiver.__SendCustomEvent__SystemString__SystemVoid"
+        PUSH, tracker
+        PUSH, __2_const_intnl_SystemString
+        PUSH, __0_intnl_SystemObject
+        EXTERN, "VRCUdonCommonInterfacesIUdonEventReceiver.__GetProgramVariable__SystemString__SystemObject"
+        PUSH, __0_intnl_SystemObject
+        PUSH, __0_intnl_VRCSDKBaseVRCPlayerApiArray
+        COPY
+        PUSH, __0_intnl_VRCSDKBaseVRCPlayerApiArray
+        PUSH, __0_intnl_SystemInt32
+        EXTERN, "VRCSDKBaseVRCPlayerApiArray.__get_Length__SystemInt32"
+        PUSH, __0_i_Int32
+        PUSH, __0_intnl_SystemInt32
+        PUSH, __0_intnl_SystemBoolean
+        EXTERN, "SystemInt32.__op_LessThan__SystemInt32_SystemInt32__SystemBoolean"
+        PUSH, __0_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x0000011C
+        PUSH, __0_i_Int32
+        PUSH, __1_intnl_SystemInt32
+        COPY
+        PUSH, __0_i_Int32
+        PUSH, __1_const_intnl_SystemInt32
+        PUSH, __0_i_Int32
+        EXTERN, "SystemInt32.__op_Addition__SystemInt32_SystemInt32__SystemInt32"
+        JUMP, 0x0000004C
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+.code_end

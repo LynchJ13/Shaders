@@ -1,0 +1,386 @@
+.data_start
+
+    .export mat
+    .export rotDeadZoneLimit
+
+    __refl_const_intnl_udonTypeID: %SystemInt64, null
+    __refl_const_intnl_udonTypeName: %SystemString, null
+    mat: %UnityEngineMaterial, null
+    rotDeadZoneLimit: %SystemSingle, null
+    showShader: %SystemBoolean, null
+    rb: %UnityEngineRigidbody, null
+    _bufferInc: %SystemSingle, null
+    _maxSpeed: %SystemSingle, null
+    rotBuffer: %SystemSingle, null
+    speedBuffer: %SystemSingle, null
+    lastPos: %UnityEngineVector3, null
+    lastRot: %UnityEngineVector3, null
+    __0_this_intnl_UnityEngineTransform: %UnityEngineTransform, this
+    __0_this_intnl_Speed_Monitor: %VRCUdonUdonBehaviour, this
+    __0_mp_a_Single: %SystemSingle, null
+    __0_mp_buffer_Single: %SystemSingle, null
+    __0_rotVel_Single: %SystemSingle, null
+    __0_speed_Single: %SystemSingle, null
+    __0_totalChange_Single: %SystemSingle, null
+    __0_dist_Vector3: %UnityEngineVector3, null
+    __0_mp_pos_Vector3: %UnityEngineVector3, null
+    __0_mp_rot_Vector3: %UnityEngineVector3, null
+    __0_const_intnl_SystemBoolean: %SystemBoolean, null
+    __1_const_intnl_SystemBoolean: %SystemBoolean, null
+    __0_const_intnl_SystemSingle: %SystemSingle, null
+    __1_const_intnl_SystemSingle: %SystemSingle, null
+    __2_const_intnl_SystemSingle: %SystemSingle, null
+    __0_const_intnl_SystemString: %SystemString, null
+    __0_const_intnl_SystemType: %SystemType, null
+    __0_const_intnl_exitJumpLoc_UInt32: %SystemUInt32, null
+    __0_const_intnl_SystemUInt32: %SystemUInt32, null
+    __1_const_intnl_exitJumpLoc_UInt32: %SystemUInt32, null
+    __2_const_intnl_exitJumpLoc_UInt32: %SystemUInt32, null
+    __3_const_intnl_exitJumpLoc_UInt32: %SystemUInt32, null
+    __4_const_intnl_exitJumpLoc_UInt32: %SystemUInt32, null
+    __0_intnl_SystemBoolean: %SystemBoolean, null
+    __1_intnl_SystemBoolean: %SystemBoolean, null
+    __0_intnl_UnityEngineQuaternion: %UnityEngineQuaternion, null
+    __1_intnl_UnityEngineQuaternion: %UnityEngineQuaternion, null
+    __2_intnl_UnityEngineQuaternion: %UnityEngineQuaternion, null
+    __3_intnl_UnityEngineQuaternion: %UnityEngineQuaternion, null
+    __0_intnl_returnValSymbol_Single: %SystemSingle, null
+    __0_intnl_SystemSingle: %SystemSingle, null
+    __1_intnl_SystemSingle: %SystemSingle, null
+    __2_intnl_SystemSingle: %SystemSingle, null
+    __3_intnl_SystemSingle: %SystemSingle, null
+    __4_intnl_SystemSingle: %SystemSingle, null
+    __5_intnl_SystemSingle: %SystemSingle, null
+    __6_intnl_SystemSingle: %SystemSingle, null
+    __7_intnl_SystemSingle: %SystemSingle, null
+    __8_intnl_SystemSingle: %SystemSingle, null
+    __0_intnl_UnityEngineTransform: %UnityEngineTransform, null
+    __0_intnl_returnTarget_UInt32: %SystemUInt32, null
+    __0_intnl_UnityEngineVector3: %UnityEngineVector3, null
+    __1_intnl_UnityEngineVector3: %UnityEngineVector3, null
+
+.data_end
+
+        
+         #  using UdonSharp;
+        
+         #  using UnityEngine;
+        
+         #  using VRC.SDKBase;
+        
+         #  using VRC.Udon;
+        
+         #  public class Speed_Monitor : UdonSharpBehaviour
+.code_start
+        
+         #  public Material mat;
+        
+         #  Rigidbody rb;
+        
+         #  private Vector3 lastPos;
+        
+         #  private Vector3 lastRot;
+        
+         #  private float speedBuffer;
+        
+         #  private float rotBuffer;
+        
+         #  public float rotDeadZoneLimit = 0.1f;
+        
+         #  float _maxSpeed = 0.05f;
+        
+         #  private float _bufferInc = 1.0f;
+        
+         #  private bool showShader = true;
+        
+         #  void Start() {
+    .export _start
+        
+    _start:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  rb = GetComponent<Rigidbody>();
+        PUSH, __0_this_intnl_Speed_Monitor
+        PUSH, __0_intnl_UnityEngineTransform
+        EXTERN, "UnityEngineComponent.__get_transform__UnityEngineTransform" # GetComponent strongbox mismatch fix
+        PUSH, __0_intnl_UnityEngineTransform
+        PUSH, __0_const_intnl_SystemType
+        PUSH, rb
+        EXTERN, "UnityEngineRigidbody.__GetComponent__T"
+        
+         #  speedBuffer = 0.0f;
+        PUSH, __0_const_intnl_SystemSingle
+        PUSH, speedBuffer
+        COPY
+        
+         #  rotBuffer = 0.0f;
+        PUSH, __0_const_intnl_SystemSingle
+        PUSH, rotBuffer
+        COPY
+        
+         #  lastPos = transform.position;
+        PUSH, __0_this_intnl_UnityEngineTransform
+        PUSH, lastPos
+        EXTERN, "UnityEngineTransform.__get_position__UnityEngineVector3"
+        
+         #  lastRot = transform.rotation.eulerAngles;
+        PUSH, __0_this_intnl_UnityEngineTransform
+        PUSH, __0_intnl_UnityEngineQuaternion
+        EXTERN, "UnityEngineTransform.__get_rotation__UnityEngineQuaternion"
+        PUSH, __0_intnl_UnityEngineQuaternion
+        PUSH, lastRot
+        EXTERN, "UnityEngineQuaternion.__get_eulerAngles__UnityEngineVector3"
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  void Update() {
+    .export _update
+        
+    _update:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  if (showShader){
+        PUSH, showShader
+        JUMP_IF_FALSE, 0x00000378
+        
+         #  Vector3 dist = transform.position - lastPos;
+        PUSH, __0_this_intnl_UnityEngineTransform
+        PUSH, __0_intnl_UnityEngineVector3
+        EXTERN, "UnityEngineTransform.__get_position__UnityEngineVector3"
+        PUSH, __0_intnl_UnityEngineVector3
+        PUSH, lastPos
+        PUSH, __0_dist_Vector3
+        EXTERN, "UnityEngineVector3.__op_Subtraction__UnityEngineVector3_UnityEngineVector3__UnityEngineVector3"
+        
+         #  float speed = dist.sqrMagnitude / _maxSpeed;
+        PUSH, __0_dist_Vector3
+        PUSH, __0_intnl_SystemSingle
+        EXTERN, "UnityEngineVector3.__get_sqrMagnitude__SystemSingle"
+        PUSH, __0_intnl_SystemSingle
+        PUSH, _maxSpeed
+        PUSH, __0_speed_Single
+        EXTERN, "SystemSingle.__op_Division__SystemSingle_SystemSingle__SystemSingle"
+        
+         #  speedBuffer = PerformBufferCalculation(speed, speedBuffer);
+        PUSH, __0_speed_Single
+        PUSH, __0_mp_a_Single
+        COPY
+        PUSH, speedBuffer
+        PUSH, __0_mp_buffer_Single
+        COPY
+        PUSH, speedBuffer
+        PUSH, __1_intnl_SystemSingle
+        COPY #  Copy-on-write symbol value dirtied
+        PUSH, __0_const_intnl_exitJumpLoc_UInt32
+        JUMP, 0x00000394
+        PUSH, __0_intnl_returnValSymbol_Single
+        PUSH, speedBuffer
+        COPY
+        
+         #  float rotVel = rb.angularVelocity.magnitude / rb.maxAngularVelocity; //maxAngularVel is 7rad/s
+        PUSH, rb
+        PUSH, __1_intnl_UnityEngineVector3
+        EXTERN, "UnityEngineRigidbody.__get_angularVelocity__UnityEngineVector3"
+        PUSH, __1_intnl_UnityEngineVector3
+        PUSH, __2_intnl_SystemSingle
+        EXTERN, "UnityEngineVector3.__get_magnitude__SystemSingle"
+        PUSH, rb
+        PUSH, __3_intnl_SystemSingle
+        EXTERN, "UnityEngineRigidbody.__get_maxAngularVelocity__SystemSingle"
+        PUSH, __2_intnl_SystemSingle
+        PUSH, __3_intnl_SystemSingle
+        PUSH, __0_rotVel_Single
+        EXTERN, "SystemSingle.__op_Division__SystemSingle_SystemSingle__SystemSingle"
+        
+         #  rotVel = (rotVel > rotDeadZoneLimit) ? rotVel : 0.0f;
+        PUSH, __0_rotVel_Single
+        PUSH, rotDeadZoneLimit
+        PUSH, __0_intnl_SystemBoolean
+        EXTERN, "SystemSingle.__op_GreaterThan__SystemSingle_SystemSingle__SystemBoolean"
+        PUSH, __0_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x0000024C
+        JUMP, 0x00000260
+        PUSH, __0_const_intnl_SystemSingle
+        PUSH, __0_rotVel_Single
+        COPY
+        
+         #  rotBuffer = PerformBufferCalculation(rotVel, rotBuffer);
+        PUSH, __0_rotVel_Single
+        PUSH, __0_mp_a_Single
+        COPY
+        PUSH, rotBuffer
+        PUSH, __0_mp_buffer_Single
+        COPY
+        PUSH, rotBuffer
+        PUSH, __4_intnl_SystemSingle
+        COPY #  Copy-on-write symbol value dirtied
+        PUSH, __1_const_intnl_exitJumpLoc_UInt32
+        JUMP, 0x00000394
+        PUSH, __0_intnl_returnValSymbol_Single
+        PUSH, rotBuffer
+        COPY
+        
+         #  float totalChange = (rotBuffer + speedBuffer) / 2.0f;
+        PUSH, rotBuffer
+        PUSH, speedBuffer
+        PUSH, __5_intnl_SystemSingle
+        EXTERN, "SystemSingle.__op_Addition__SystemSingle_SystemSingle__SystemSingle"
+        PUSH, __5_intnl_SystemSingle
+        PUSH, __1_const_intnl_SystemSingle
+        PUSH, __0_totalChange_Single
+        EXTERN, "SystemSingle.__op_Division__SystemSingle_SystemSingle__SystemSingle"
+        
+         #  mat.SetFloat("_Speed", totalChange);
+        PUSH, mat
+        PUSH, __0_const_intnl_SystemString
+        PUSH, __0_totalChange_Single
+        EXTERN, "UnityEngineMaterial.__SetFloat__SystemString_SystemSingle__SystemVoid"
+        
+         #  UpdatePosRot(transform.position, transform.rotation.eulerAngles);
+        PUSH, __0_this_intnl_UnityEngineTransform
+        PUSH, __0_mp_pos_Vector3
+        EXTERN, "UnityEngineTransform.__get_position__UnityEngineVector3"
+        PUSH, __0_this_intnl_UnityEngineTransform
+        PUSH, __1_intnl_UnityEngineQuaternion
+        EXTERN, "UnityEngineTransform.__get_rotation__UnityEngineQuaternion"
+        PUSH, __1_intnl_UnityEngineQuaternion
+        PUSH, __0_mp_rot_Vector3
+        EXTERN, "UnityEngineQuaternion.__get_eulerAngles__UnityEngineVector3"
+        PUSH, __2_const_intnl_exitJumpLoc_UInt32
+        JUMP, 0x0000049C
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  float PerformBufferCalculation(float a, float buffer){
+    PerformBufferCalculation:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  if (a > buffer){
+        PUSH, __0_mp_a_Single
+        PUSH, __0_mp_buffer_Single
+        PUSH, __1_intnl_SystemBoolean
+        EXTERN, "SystemSingle.__op_GreaterThan__SystemSingle_SystemSingle__SystemBoolean"
+        PUSH, __1_intnl_SystemBoolean
+        JUMP_IF_FALSE, 0x000003E0
+        
+         #  buffer = a;
+        PUSH, __0_mp_a_Single
+        PUSH, __0_mp_buffer_Single
+        COPY
+        JUMP, 0x00000444
+        
+         #  } else {
+        
+         #  buffer -= _bufferInc * Time.deltaTime;
+        PUSH, __6_intnl_SystemSingle
+        EXTERN, "UnityEngineTime.__get_deltaTime__SystemSingle"
+        PUSH, _bufferInc
+        PUSH, __6_intnl_SystemSingle
+        PUSH, __7_intnl_SystemSingle
+        EXTERN, "SystemSingle.__op_Multiplication__SystemSingle_SystemSingle__SystemSingle"
+        PUSH, __0_mp_buffer_Single
+        PUSH, __7_intnl_SystemSingle
+        PUSH, __8_intnl_SystemSingle
+        EXTERN, "SystemSingle.__op_Subtraction__SystemSingle_SystemSingle__SystemSingle"
+        PUSH, __8_intnl_SystemSingle
+        PUSH, __0_mp_buffer_Single
+        COPY
+        
+         #  return Mathf.Clamp(buffer, 0.0f, 1.5f);
+        PUSH, __0_mp_buffer_Single
+        PUSH, __0_const_intnl_SystemSingle
+        PUSH, __2_const_intnl_SystemSingle
+        PUSH, __0_intnl_returnValSymbol_Single
+        EXTERN, "UnityEngineMathf.__Clamp__SystemSingle_SystemSingle_SystemSingle__SystemSingle"
+        PUSH, __0_intnl_returnTarget_UInt32 # Explicit return sequence
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  void UpdatePosRot (Vector3 pos, Vector3 rot){
+    UpdatePosRot:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  lastPos = pos;
+        PUSH, __0_mp_pos_Vector3
+        PUSH, lastPos
+        COPY
+        
+         #  lastRot = rot;
+        PUSH, __0_mp_rot_Vector3
+        PUSH, lastRot
+        COPY
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  void OnPickup(){
+    .export _onPickup
+        
+    _onPickup:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  showShader = true;
+        PUSH, __0_const_intnl_SystemBoolean
+        PUSH, showShader
+        COPY
+        
+         #  UpdatePosRot(transform.position, transform.rotation.eulerAngles);
+        PUSH, __0_this_intnl_UnityEngineTransform
+        PUSH, __0_mp_pos_Vector3
+        EXTERN, "UnityEngineTransform.__get_position__UnityEngineVector3"
+        PUSH, __0_this_intnl_UnityEngineTransform
+        PUSH, __2_intnl_UnityEngineQuaternion
+        EXTERN, "UnityEngineTransform.__get_rotation__UnityEngineQuaternion"
+        PUSH, __2_intnl_UnityEngineQuaternion
+        PUSH, __0_mp_rot_Vector3
+        EXTERN, "UnityEngineQuaternion.__get_eulerAngles__UnityEngineVector3"
+        PUSH, __3_const_intnl_exitJumpLoc_UInt32
+        JUMP, 0x0000049C
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+        
+         #  void OnDrop(){
+    .export _onDrop
+        
+    _onDrop:
+        
+        PUSH, __0_const_intnl_SystemUInt32
+        
+         #  showShader = false;
+        PUSH, __1_const_intnl_SystemBoolean
+        PUSH, showShader
+        COPY
+        
+         #  UpdatePosRot(transform.position, transform.rotation.eulerAngles);
+        PUSH, __0_this_intnl_UnityEngineTransform
+        PUSH, __0_mp_pos_Vector3
+        EXTERN, "UnityEngineTransform.__get_position__UnityEngineVector3"
+        PUSH, __0_this_intnl_UnityEngineTransform
+        PUSH, __3_intnl_UnityEngineQuaternion
+        EXTERN, "UnityEngineTransform.__get_rotation__UnityEngineQuaternion"
+        PUSH, __3_intnl_UnityEngineQuaternion
+        PUSH, __0_mp_rot_Vector3
+        EXTERN, "UnityEngineQuaternion.__get_eulerAngles__UnityEngineVector3"
+        PUSH, __4_const_intnl_exitJumpLoc_UInt32
+        JUMP, 0x0000049C
+        PUSH, __0_intnl_returnTarget_UInt32 # Function epilogue
+        COPY
+        JUMP_INDIRECT, __0_intnl_returnTarget_UInt32
+        
+.code_end
